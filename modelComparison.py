@@ -18,6 +18,8 @@ from sklearn import metrics
 data = pd.read_json('train.json')
 X = data.ingredients 
 y = data.cuisine
+
+#find null accuracy
 nullAcc = max(pd.value_counts(y)) / float(len(y))
 print 'Null accuracy:', nullAcc
 ############################################################
