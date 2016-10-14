@@ -64,21 +64,21 @@ X_test_dtm = vect.transform(X_test)
 # # best accuracy : 0.746781979083 alpha=0.1
 # ############################################################
 
-### BUILD ANOTHER MODEL ####################################
-# instantiate Logistic Regression model
-logreg = LogisticRegression()
+# ### BUILD ANOTHER MODEL ####################################
+# # instantiate Logistic Regression model
+# logreg = LogisticRegression()
 
-# train model with X_test_dtm
-logreg.fit(X_train_dtm, y_train)
+# # train model with X_test_dtm
+# logreg.fit(X_train_dtm, y_train)
 
-# make predictions
-y_pred_class = logreg.predict(X_test_dtm)
+# # make predictions
+# y_pred_class = logreg.predict(X_test_dtm)
 
-# CALCULATE ACCURACY
-score = metrics.accuracy_score(y_test, y_pred_class)
-print "Score for Logistic Regression:" , score
-# best accuracy : 0.776749798874
-############################################################
+# # CALCULATE ACCURACY
+# score = metrics.accuracy_score(y_test, y_pred_class)
+# print "Score for Logistic Regression:" , score
+# # best accuracy : 0.776749798874
+# ############################################################
 
 
 # ### BUILD ANOTHER MODEL ####################################
@@ -129,18 +129,18 @@ print "Score for Logistic Regression:" , score
 # # best accuracy : 0.680510860821
 # ############################################################
 
-# ### BUILD ANOTHER MODEL ####################################
-# # instantiate SVM model
-# svm = svm.SVC()
+### BUILD ANOTHER MODEL ####################################
+# instantiate SVM model
+svm = svm.SVC(gamma=1, C=3.1622776601683795, probability=True)
 
-# # train model with X_test_dtm
-# svm.fit(X_train_dtm, y_train)
+# train model with X_test_dtm
+svm.fit(X_train_dtm, y_train)
 
-# # make predictions
-# y_pred_class = svm.predict(X_test_dtm)
+# make predictions
+y_pred_class = svm.predict(X_test_dtm)
 
-# # CALCULATE ACCURACY
-# score = metrics.accuracy_score(y_test, y_pred_class)
-# print "Score for SVM:" , score
-# # best accuracy : 0.754726468222 kernel='linear', C=1
-# ############################################################
+# CALCULATE ACCURACY
+score = metrics.accuracy_score(y_test, y_pred_class)
+print "Score for SVM:" , score
+# best accuracy : 0.754726468222 kernel='linear', C=1
+############################################################

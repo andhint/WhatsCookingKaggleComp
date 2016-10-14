@@ -1,0 +1,11 @@
+SUBMISSION LOG
+
+1) submission1.csv 10/13/2016 10:15PM 
+-used combine and remove spaces function for preprocessing
+-CountVectorizer(max_features=6000)
+-LogisticRegression(C=2)
+
+-things to improve on:
+	-try stemming words
+	-remove certain features (ex. lbs g oz)
+Accuracy = 0.78379    Position: 637-638
