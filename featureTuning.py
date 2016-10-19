@@ -1,6 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-from preProcessing import combineAndRemoveSpaces
+from preProcessing import combineString
 from collections import Counter
 
 from sklearn.cross_validation import train_test_split
@@ -21,7 +21,7 @@ print 'Null accuracy:', nullAcc
 
 ### PREPROCESS DATA ########################################
 # remove spaces in individual strings then combine all features in list into one string
-X = X.apply(combineAndRemoveSpaces)
+X = X.apply(combineString)
 
 ############################################################
 
@@ -32,7 +32,12 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1)
 
 ### VECTORIZING DATASET ####################################
 # instantiate the vectorizer
-vect = CountVectorizer(max_features=6000)
+	#create list of stopwords
+numbers = [str(num) for num in range(0,101)]
+units = ['lbs', 'lb', 'g', 'oz', 'large', 'medium', 'small']
+stopWords = [] + numbers + units
+stopWords=[]
+vect = CountVectorizer(stop_words=stopWords)
 	# default accuracy = 0.777152051488
 	# 6264 features by default
 	# best accuracry for max_features at 6000
@@ -42,9 +47,8 @@ X_train_dtm = vect.fit_transform(X_train)
 
 # transform testing data (using fit from training data)
 X_test_dtm = vect.transform(X_test)
+print 'Number of features: ', len(vect.get_feature_names())
 
-newDF = pd.DataFrame(X_train_dtm.toarray(), columns=vect.get_feature_names())
-print vect.get_feature_names()
 ############################################################
 
 #### TEST DIFFERENT TUNING PARAMETERS ######################
@@ -59,4 +63,6 @@ y_pred_class = logreg.predict(X_test_dtm)
 
 # CALCULATE ACCURACY
 score = metrics.accuracy_score(y_test, y_pred_class)
-print score
+print "Accuracy: ", score
+
+# score to beat: 0.782180209171

@@ -1,6 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-from preProcessing import combineAndRemoveSpaces
+from preProcessing import combineAndRemoveSpaces, combineString
 from collections import Counter
 
 from sklearn.cross_validation import train_test_split
@@ -21,8 +21,8 @@ idNum = testData.id
 
 ### PREPROCESS DATA ########################################
 # remove spaces in individual strings then combine all features in list into one string
-X_train = X_train.apply(combineAndRemoveSpaces)
-X_test = X_test.apply(combineAndRemoveSpaces)
+X_train = X_train.apply(combineString)
+X_test = X_test.apply(combineString)
 ############################################################
 
 ### VECTORIZING DATASET ####################################
@@ -52,4 +52,4 @@ y_pred_class = logreg.predict(X_test_dtm)
 # concat
 submission = pd.concat([idNum, pd.Series(y_pred_class)], axis=1)
 submission.columns = ['id','cuisine']
-submission.to_csv('submission1.csv', index=False)
+submission.to_csv('submission2.csv', index=False)

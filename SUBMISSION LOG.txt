@@ -9,3 +9,11 @@ SUBMISSION LOG
 	-try stemming words
 	-remove certain features (ex. lbs g oz)
 Accuracy = 0.78379    Position: 637-638
+
+2) submission2.csv 10/18/2016 11:40PM
+-changed preprocessing function only
+-doesn't remove spaces anymore
+
+-still need to try improving on things listed in submission 1
+
+Accuracy = 0.78409 Position 632-633
