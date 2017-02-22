@@ -1,10 +1,11 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-from preProcessing import combineString
+from preProcessing import combineString, stemWords
 from collections import Counter
 
 from sklearn.cross_validation import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn import metrics
 from sklearn.grid_search import GridSearchCV
@@ -36,8 +37,8 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1)
 numbers = [str(num) for num in range(0,101)]
 units = ['lbs', 'lb', 'g', 'oz', 'large', 'medium', 'small']
 stopWords = [] + numbers + units
-stopWords=[]
-vect = CountVectorizer(stop_words=stopWords)
+
+vect = CountVectorizer(stop_words=stopWords, strip_accents='unicode')
 	# default accuracy = 0.777152051488
 	# 6264 features by default
 	# best accuracry for max_features at 6000

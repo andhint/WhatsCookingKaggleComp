@@ -23,11 +23,16 @@ idNum = testData.id
 # remove spaces in individual strings then combine all features in list into one string
 X_train = X_train.apply(combineString)
 X_test = X_test.apply(combineString)
+
 ############################################################
 
 ### VECTORIZING DATASET ####################################
 # instantiate the vectorizer
-vect = CountVectorizer(max_features=6000)
+numbers = [str(num) for num in range(0,101)]
+units = ['lbs', 'lb', 'g', 'oz', 'large', 'medium', 'small']
+stopWords = [] + numbers + units
+
+vect = CountVectorizer(stop_words=stopWords, strip_accents='unicode')
 	# default accuracy = 0.777152051488
 	# 6264 features by default
 	# best accuracry for max_features at 6000
@@ -52,4 +57,4 @@ y_pred_class = logreg.predict(X_test_dtm)
 # concat
 submission = pd.concat([idNum, pd.Series(y_pred_class)], axis=1)
 submission.columns = ['id','cuisine']
-submission.to_csv('submission2.csv', index=False)
+submission.to_csv('submission3.csv', index=False)

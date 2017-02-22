@@ -1,6 +1,6 @@
 SUBMISSION LOG
 
-1) submission1.csv 10/13/2016 10:15PM 
+1) submission1.csv 
 -used combine and remove spaces function for preprocessing
 -CountVectorizer(max_features=6000)
 -LogisticRegression(C=2)
@@ -10,10 +10,16 @@ SUBMISSION LOG
 	-remove certain features (ex. lbs g oz)
 Accuracy = 0.78379    Position: 637-638
 
-2) submission2.csv 10/18/2016 11:40PM
+2) submission2.csv
 -changed preprocessing function only
 -doesn't remove spaces anymore
 
 -still need to try improving on things listed in submission 1
 
 Accuracy = 0.78409 Position 632-633
+
+3) submission3.csv
+-tried word stemming and using TfidVectorizer instead, neither improved accurcy
+-changed some arguments in CountVectorizer and removed stopwords
+
+Accuracy = 0.78429 Position 628-630

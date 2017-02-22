@@ -1,19 +1,15 @@
-# 1) remove stopwords (optional)
-# 2) remove spaces from individual features
-# 3) combine all features in each list into one string for use with CountVectorizer() 
+from nltk.stem import PorterStemmer
 
 # No longer using this fucntion, combineString yields better accuracy
-# def combineAndRemoveSpaces(row):
-# 	return " ".join([item.replace(' ', '') for item in row])
+def combineAndRemoveSpaces(row):
+ 	return " ".join([item.replace(' ', '') for item in row])
 
 def combineString(row):
 	return " ".join(row)
 
-# import pandas as pd
 
-
-# data = pd.read_json('train.json')
-# X = data.ingredients 
-# print X[1]
-# print combineString(X[1])
-# stop = ['oil','eggs', 'milk']
+# no longer  in use, stemming decreases accuracy
+def stemWords(row):
+	ps = PorterStemmer()
+	row = [ps.stem(word) for word in row.split(" ")]
+	return row
